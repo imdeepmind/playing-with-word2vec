@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Playing with word2vec</title>
+</head>
+<body>
+    <header class="d-flex justify-content-center align-items-center flex-column">
+        <h1>Playting with word2vec</h1>
+        <p>By Abhishek Chatterjee</p>
+    </header>
+    <div class="container-fluid">
+        <form action="#" class="d-flex justify-content-center" id="word-search">
+            <input type="text" id="text-input" class="form-control" name="word" placeholder="type a valid word...." required autofocus>
+            <button type="submit" class="btn btn-primary">Send</button>
+        </form>
+        <br><br>
+        <div class="container" id="data">
+            <ul>
+                <li>Please type a word in the form and then hit the send button</li>
+            </ul>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+            $('#word-search').submit(function(e){
+                e.preventDefault();
+
+                var line = $('#text-input').val().replace(' ', '')
+                $('#text-input').val(line);
+
+                var data = $(this).serialize();
+                var url = "https://google.com/";
+
+                $.ajax({
+                    url: url,
+                    type: "get",
+                    data: data,
+                    success: function(html) {
+                        console.log(html);
+                    },
+                    error: function(err){
+                        alert('Sorry, something went wrong!!!');
+                        console.log(err);
+                    }
+                });
+            })
+        });
+    </script>
+</body>
+</html>
