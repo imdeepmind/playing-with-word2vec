@@ -9,13 +9,13 @@
 </head>
 <body>
     <header class="d-flex justify-content-center align-items-center flex-column">
-        <h1>Playting with word2vec</h1>
+        <h1>Playing with word2vec</h1>
         <p>By Abhishek Chatterjee</p>
     </header>
     <div class="container-fluid">
         <form action="#" class="d-flex justify-content-center" id="word-search">
             <input type="text" id="text-input" class="form-control" name="word" placeholder="type a valid word...." required autofocus>
-            <button type="submit" class="btn btn-primary">Send</button>
+            <button type="submit" id="send" class="btn btn-primary">Upload</button>
         </form>
         <br><br>
         <div class="container" id="data">
@@ -42,10 +42,15 @@
                     url: url,
                     type: "get",
                     data: data,
+                    beforeSend: function(){
+                        $('#send').html('Loading...')
+                    },
                     success: function(html) {
                         console.log(html);
+                        $('#send').html('Upload')
                     },
                     error: function(err){
+                        $('#send').html('Upload')
                         alert('Sorry, something went wrong!!!');
                         console.log(err);
                     }
