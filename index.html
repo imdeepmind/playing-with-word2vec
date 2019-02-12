@@ -19,9 +19,11 @@
         </form>
         <br><br>
         <div class="container" id="data">
-            <ul>
-                <li>Please type a word in the form and then hit the send button</li>
-            </ul>
+            <div class="card">
+                <div class="card-body">
+                    Please type a word in the form and then hit the send button
+                </div>
+            </div>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -36,7 +38,7 @@
                 $('#text-input').val(line);
 
                 var data = $(this).serialize();
-                var url = "https://google.com/";
+                var url = "https://shrouded-depths-63903.herokuapp.com/similar/";
 
                 $.ajax({
                     url: url,
@@ -46,7 +48,14 @@
                         $('#send').html('Loading...')
                     },
                     success: function(html) {
-                        console.log(html);
+                        if (html.success === true){
+                            var data = html.data;
+                            var ele = []
+                            data.map(val => {
+                                ele.push("<div class='card mb-3'><div class='card-body'><div class='card-title'>"+val[0]+"</div>"+val[1]*100+"% similar</div></div>")
+                            })  
+                            $('#data').html(ele);
+                        }
                         $('#send').html('Upload')
                     },
                     error: function(err){
