@@ -18,16 +18,22 @@ def index():
 def similar():
     try:
         word = request.args.get('word')
-        model = gensim.models.KeyedVectors.load_word2vec_format('model.bin', binary=True)
-        data = model.wv.most_similar(word)
-        similar = json.dumps(data, separators=(',',':'))
-        return jsonify({
-            "success" : True,
-            "data": data
-        })
+        if word:
+            model = gensim.models.KeyedVectors.load_word2vec_format('model.bin', binary=True)
+            data = model.wv.most_similar(word)
+            similar = json.dumps(data, separators=(',',':'))
+            return jsonify({
+                "success" : True,
+                "data": data
+            })
+        else:
+            return jsonify({
+                "success" : False,
+                "message": "Please provide a word"
+            })
     except Exception as ex:
         print(ex)
         return jsonify({
             "success": False,
-            "error" : "Something went wrong"
+            "message" : "Something went wrong"
         })
