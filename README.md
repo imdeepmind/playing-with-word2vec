@@ -6,5 +6,7 @@ In this project, I trained a word2vec model on live twitter data. Then build a r
 For building the front-end part I've used bootstrap 4.
 
 Demo - 
-https://imdeepmind.ml/playing-with-word2vec/
-https://shrouded-depths-63903.herokuapp.com/
+
+Front-end - https://imdeepmind.ml/playing-with-word2vec/
+
+Back-end - https://shrouded-depths-63903.herokuapp.com/
