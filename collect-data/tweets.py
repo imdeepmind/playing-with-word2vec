@@ -8,7 +8,7 @@ csecret=""
 atoken=""
 asecret=""
 
-f= open("twitts.csv","w+")
+f= open("tweets.csv","w+")
 f.write('text,username,date\n')
 
 class streamData(StreamListener):

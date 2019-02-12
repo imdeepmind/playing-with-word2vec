@@ -3,8 +3,6 @@ import re
 import gensim
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
-from nltk.stem import PorterStemmer
-from bs4 import BeautifulSoup
 
 data = pd.read_csv('tweets.csv')
 
@@ -35,6 +33,26 @@ for tweet in text:
 
 del text
 
-model = gensim.models.Word2Vec(sentences=tweets, size=100, window=5, workers=4, min_count=1)
+num = {}
+
+for tweet in tweets:
+    for word in tweet:
+        if word in num:
+            num[word] += 1
+        else:
+            num[word] = 1
+
+threshold = 20
+
+cleaned_tweets = []
+
+for tweet in tweets:
+    temp = []
+    for word in tweet:
+        if num[word] >= threshold:
+            temp.append(word)
+    cleaned_tweets.append(temp)
+
+model = gensim.models.Word2Vec(sentences=cleaned_tweets, size=100, window=5, workers=4, min_count=1)
 
 model.wv.save_word2vec_format('model.bin', binary=True)
