@@ -42,7 +42,7 @@ for tweet in tweets:
         else:
             num[word] = 1
 
-threshold = 20
+threshold = 10
 
 cleaned_tweets = []
 
